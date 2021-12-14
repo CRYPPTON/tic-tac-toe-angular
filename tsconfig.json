@@ -33,9 +33,12 @@
       "@app-directives": [
         "src/app/core/directives/"
       ],
-      "@app-pipe": [
+      "@app-pipes": [
         "src/app/core/pipe/"
-      ]
+      ],
+      "@app-error-handlers": [
+        "src/app/core/error-handlers/"
+      ],
     },
   },
   "angularCompilerOptions": {

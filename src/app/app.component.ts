@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { GameEngineHandlerError } from './core/error-handler/game-engine-handler-error';
-import { InformationDialogService } from './core/services/information-dialog.service';
-import { InformationDialogType } from './shared/enums/information-dialog-type';
+import { GameEngineHandlerError } from '@app-error-handlers';
+import { InformationDialogService } from '@app-services';
+import { InformationDialogType } from '@app-enums';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,11 @@ export class AppComponent {
 
   constructor(private informationDialogService: InformationDialogService) { }
 
-  openDialog() {
+  onOpenDialog(): void {
     this.informationDialogService.showDialog('Pobednik: X', InformationDialogType.failure);
   }
 
-  showError() {
+  onShowError(): void {
     throw new GameEngineHandlerError('Pobeda: X', InformationDialogType.success);
   }
 }
