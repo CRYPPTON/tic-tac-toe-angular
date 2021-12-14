@@ -7,7 +7,7 @@ import { informationDialogData } from '@app-models';
   templateUrl: './information-dialog.component.html',
   styleUrls: ['./information-dialog.component.scss']
 })
-export class InformationDialogComponent implements OnInit {
+export class InformationDialogComponent {
 
   //#region Class properties
 
@@ -15,7 +15,6 @@ export class InformationDialogComponent implements OnInit {
   public styleClass: string;
 
   //#endregion
-
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: informationDialogData) {
     if (data.informationDialogType === 'Greska') {
@@ -26,7 +25,5 @@ export class InformationDialogComponent implements OnInit {
       this.styleClass = 'success-icon';
     }
   }
-
-  ngOnInit(): void { }
 
 }

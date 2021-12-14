@@ -5,22 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tic-tac-toe.component.html',
   styleUrls: ['./tic-tac-toe.component.scss']
 })
-export class TicTacToeComponent implements OnInit {
+export class TicTacToeComponent {
 
   //#region Class properties
 
   public gameField = new Array(9);
 
   //#endregion
-
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-
   //#region UI events
-  
+
   public onClickOnPosition(): void {
 
   }
