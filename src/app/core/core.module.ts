@@ -1,6 +1,6 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameEngineHandlerException } from './error-handler/game-engine-handler-exception';
+import { GameEngineHandlerException } from './error-handlers/game-engine-handler-exception';
 
 @NgModule({
   declarations: [],
