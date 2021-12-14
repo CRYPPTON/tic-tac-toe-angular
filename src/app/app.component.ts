@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GameEngineHandlerError } from '@app-error-handlers';
 import { InformationDialogService } from '@app-services';
 import { InformationDialogType } from '@app-enums';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,22 @@ import { InformationDialogType } from '@app-enums';
 export class AppComponent {
   title = 'tic-tac-toe';
 
-  constructor(private informationDialogService: InformationDialogService) { }
+  constructor(
+    private informationDialogService: InformationDialogService,
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('en');
+  }
 
   onOpenDialog(): void {
-    this.informationDialogService.showDialog('Pobednik: X', InformationDialogType.failure);
+    this.informationDialogService.showDialog(
+      this.translate.instant('exceptions.invalidMove'),
+      InformationDialogType.failure);
   }
 
   onShowError(): void {
-    throw new GameEngineHandlerError('Pobeda: X', InformationDialogType.success);
+    throw new GameEngineHandlerError(
+      this.translate.instant('exceptions.win'),
+      InformationDialogType.success);
   }
 }

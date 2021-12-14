@@ -5,6 +5,7 @@ import { GameRoutingModule } from './game-routing.module';
 import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     GameRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class GameModule { }
