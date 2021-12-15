@@ -1,15 +1,22 @@
 <div class="container">
-  <p>{{ 'onMove' | translate }}: X/O</p>
+  <p>{{ "onMove" | translate }}: {{ currentPlayer }}</p>
   <div class="border-game">
-    <div
-      matRipple
-      class="field"
-      *ngFor="let field of gameField"
-    >
-      1
+
+    <ng-container *ngFor="let row of gameBoard; let i = index">
+      <ng-container  *ngFor="let field of row; let j = index">
+        <!-- single game field -->
+        <app-game-field
+          [row]="i"
+          [col]="j"
+        ></app-game-field>
+
+      </ng-container>
+    </ng-container>
+
+    <div class="mt-5">
+      <button mat-raised-button color="primary">
+        {{ "buttons.new-game" | translate }}
+      </button>
     </div>
-  </div>
-  <div class="mt-5">
-    <button mat-raised-button color="primary">{{ 'buttons.new-game' | translate }}</button>
   </div>
 </div>

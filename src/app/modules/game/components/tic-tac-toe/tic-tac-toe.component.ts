@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { GameEngineService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-tic-tac-toe',
   templateUrl: './tic-tac-toe.component.html',
   styleUrls: ['./tic-tac-toe.component.scss']
 })
-export class TicTacToeComponent {
-
+export class TicTacToeComponent implements OnInit {
   //#region Class properties
 
-  public gameField = new Array(9);
+  public gameBoard;
+  public currentPlayer: string;
 
   //#endregion
-  constructor() { }
 
-  //#region UI events
+  constructor(private gameEngineService: GameEngineService) { }
 
-  public onClickOnPosition(): void {
+  //#region Life cycle hooks
 
+  ngOnInit(): void {
+    this.gameBoard = this.gameEngineService.gameBoard;
+    this.currentPlayer = this.gameEngineService.currentPlayer;
   }
 
-  //#endregion
+  //endregion
 
 }

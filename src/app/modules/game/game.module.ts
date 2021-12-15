@@ -6,10 +6,12 @@ import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.compone
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { GameFieldComponent } from './components/game-field/game-field.component';
 
 @NgModule({
   declarations: [
-    TicTacToeComponent
+    TicTacToeComponent,
+    GameFieldComponent
   ],
   imports: [
     CommonModule,
