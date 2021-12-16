@@ -7,8 +7,8 @@
     "ok": "U redu"
   },
   "exceptions": {
-    "invalidMove": "Nedozvoljen potez",
-    "startNewGame": "Zapocnite novu igru",
+    "invalidMove": "Nedozvoljen potez!",
+    "startNewGame": "Zapocnite novu igru!",
     "win": "Pobeda"
   },
   "onMove": "Na potezu je"

@@ -1,0 +1,17 @@
+.field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px gray;
+  cursor: pointer;
+  background-color: lightblue;
+  height: 100%;
+  width: 100%;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}

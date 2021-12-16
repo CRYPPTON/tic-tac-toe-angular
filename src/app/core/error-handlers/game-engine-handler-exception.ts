@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from "@angular/core";
 import { InformationDialogType } from "src/app/shared/enums";
 import { InformationDialogService } from "../services";
-import { GameEngineHandlerError } from "./game-engine-handler-error";
+import { GameEngineHandlerError } from "@app-error-handlers";
 
 @Injectable()
 export class GameEngineHandlerException implements ErrorHandler {

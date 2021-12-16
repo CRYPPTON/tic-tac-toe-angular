@@ -1,4 +1,4 @@
-import { InformationDialogType } from "src/app/shared/enums"
+import { InformationDialogType } from "@app-enums"
 
 export class GameEngineHandlerError extends Error {
     constructor(message: string, public errorType: InformationDialogType) {
