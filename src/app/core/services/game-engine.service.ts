@@ -7,6 +7,7 @@ import { GameEngineHandlerError } from '@app-error-handlers';
   providedIn: 'root'
 })
 export class GameEngineService {
+
   //#region Class properties
 
   gameOver: boolean;
@@ -29,7 +30,7 @@ export class GameEngineService {
 
   public play(row: number, col: number): void {
 
-    this.checkAllRule(row, col);
+    this.checkForErrors(row, col);
 
     this.setBoard(row, col);
 
@@ -82,7 +83,7 @@ export class GameEngineService {
 
   //#region Game check exceptions
 
-  private checkAllRule(row: number, col: number): void {
+  private checkForErrors(row: number, col: number): void {
     this.exceptionGameOver(this.gameOver);
     this.exceptionInvalidMove(row, col);
   }
@@ -122,7 +123,7 @@ export class GameEngineService {
       for (let j = 0; j < this.boardSize; j++) {
 
         // check rows.
-        if (this.gameBoard[i][0] === this.gameBoard[i][j] && this.gameBoard[i][j]) {
+        if (this.gameBoard[i][0] === this.gameBoard[i][j]) {
           countSymbolsRow++;
           if (countSymbolsRow === this.boardSize) {
             this.winner = this.gameBoard[i][j];
@@ -131,7 +132,7 @@ export class GameEngineService {
         }
 
         // check columns.
-        if (this.gameBoard[0][i] === this.gameBoard[j][i] && this.gameBoard[j][i]) {
+        if (this.gameBoard[0][i] === this.gameBoard[j][i]) {
           countSymbolsCol++;
           if (countSymbolsCol === this.boardSize) {
             this.winner = this.gameBoard[j][i];
@@ -141,7 +142,7 @@ export class GameEngineService {
       }
 
       // check main diagonal
-      if (this.gameBoard[0][0] === this.gameBoard[i][i] && this.gameBoard[i][i]) {
+      if (this.gameBoard[0][0] === this.gameBoard[i][i]) {
         countSymbolsMainDiagonal++;
         if (countSymbolsMainDiagonal === this.boardSize) {
           this.winner = this.gameBoard[0][0];
@@ -149,8 +150,7 @@ export class GameEngineService {
       }
 
       //check secondary diagonal
-      if (this.gameBoard[0][this.boardSize - 1] === this.gameBoard[i][this.boardSize - 1 - i]
-        && this.gameBoard[i][this.boardSize - 1 - i]) {
+      if (this.gameBoard[0][this.boardSize - 1] === this.gameBoard[i][this.boardSize - 1 - i]) {
         countSymbolsSecondaryDiagonal++;
         if (countSymbolsSecondaryDiagonal === this.boardSize) {
           this.winner = this.gameBoard[0][this.boardSize - 1];

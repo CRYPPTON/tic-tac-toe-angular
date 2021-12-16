@@ -8,6 +8,7 @@ import { GameSymbol } from 'src/app/shared/enums';
   styleUrls: ['./tic-tac-toe.component.scss'],
 })
 export class TicTacToeComponent implements AfterViewInit {
+
   //#region Class properties
 
   board = [];
@@ -32,7 +33,7 @@ export class TicTacToeComponent implements AfterViewInit {
 
   //#endregion
 
-  //#init
+  //#region init methods
 
   private initSetGirdStyleSize(): void {
     const element = (document.querySelector('.border-game') as HTMLElement);
