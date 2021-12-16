@@ -5,7 +5,7 @@ import { GameSymbol } from '@app-enums';
 @Component({
   selector: 'app-game-field',
   templateUrl: './game-field.component.html',
-  styleUrls: ['./game-field.component.scss']
+  styleUrls: ['./game-field.component.scss'],
 })
 export class GameFieldComponent {
 
@@ -26,6 +26,7 @@ export class GameFieldComponent {
 
   public onPlay(): void {
     this.gameEngineService.play(this.row, this.col);
+
   }
 
   //#endregion

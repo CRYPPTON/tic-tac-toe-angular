@@ -1,29 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
 import { GameEngineService } from 'src/app/core/services';
+import { GameSymbol } from 'src/app/shared/enums';
 
 @Component({
   selector: 'app-tic-tac-toe',
   templateUrl: './tic-tac-toe.component.html',
-  styleUrls: ['./tic-tac-toe.component.scss']
+  styleUrls: ['./tic-tac-toe.component.scss'],
 })
-export class TicTacToeComponent implements OnInit {
+export class TicTacToeComponent {
   //#region Class properties
 
-  public gameBoard;
-  public currentPlayer: string;
+  get currentPlayer(): GameSymbol {
+    return this.gameEngineService.currentPlayer;
+  }
+
+  //public currentPlayer: string;
 
   //#endregion
 
   constructor(private gameEngineService: GameEngineService) { }
-
-  //#region Life cycle hooks
-
-  ngOnInit(): void {
-    this.gameBoard = this.gameEngineService.gameBoard;
-    this.currentPlayer = this.gameEngineService.currentPlayer;
-  }
-
-  //endregion
 
   //#region UI events
 

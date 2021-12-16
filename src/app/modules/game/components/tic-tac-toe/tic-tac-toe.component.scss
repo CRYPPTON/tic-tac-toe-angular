@@ -9,6 +9,7 @@
   width: 600px;
   display: grid;
   gap: 5px;
+  user-select:none;
 
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
