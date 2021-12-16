@@ -26,7 +26,6 @@ export class GameFieldComponent {
 
   public onPlay(): void {
     this.gameEngineService.play(this.row, this.col);
-
   }
 
   //#endregion

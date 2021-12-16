@@ -11,9 +11,6 @@
   gap: 5px;
   user-select:none;
 
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-
   @media screen and (max-width: 800px) {
     height: 300px;
     width: 300px;

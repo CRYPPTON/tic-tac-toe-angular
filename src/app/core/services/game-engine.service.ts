@@ -13,6 +13,7 @@ export class GameEngineService {
   currentPlayer: GameSymbol;
   gameBoard: Array<GameSymbol[]>;
   winner: GameSymbol;
+  boardSize: number;
 
   //#endregion
 
@@ -20,9 +21,30 @@ export class GameEngineService {
     this.createNewGame();
   }
 
+  //#region Game functionality
+
+  public createNewGame(): void {
+    this.initCreateGame();
+  }
+
+  public play(row: number, col: number): void {
+
+    this.checkAllRule(row, col);
+
+    this.setBoard(row, col);
+
+    this.checkWin();
+
+    this.changeCurrentPlayer();
+  }
+
+  //#endregion
+
   //#region Init
 
   private initCreateGame(): void {
+    this.boardSize = 3;
+
     this.gameOver = false;
 
     this.currentPlayer = GameSymbol.X;
@@ -37,11 +59,11 @@ export class GameEngineService {
   //#region Game utility
 
   private createBoard(): Array<GameSymbol[]> {
-    return [
-      new Array(3),
-      new Array(3),
-      new Array(3),
-    ];
+    let board = new Array();
+    for (let i = 0; i < this.boardSize; i++) {
+      board.push(new Array(this.boardSize))
+    }
+    return board;
   }
 
   private changeCurrentPlayer(): void {
@@ -60,10 +82,9 @@ export class GameEngineService {
 
   //#region Game check exceptions
 
-  public checkAllRule(row: number, col: number): void {
+  private checkAllRule(row: number, col: number): void {
     this.exceptionGameOver(this.gameOver);
     this.exceptionInvalidMove(row, col);
-
   }
 
   private exceptionInvalidMove(row: number, col: number): void {
@@ -89,22 +110,21 @@ export class GameEngineService {
   }
 
   private checkWin(): void {
-    let boardLength = this.gameBoard.length;
     let countSymbolsRow: number = 0;
     let countSymbolsCol: number = 0;
     let countSymbolsMainDiagonal: number = 0;
     let countSymbolsSecondaryDiagonal: number = 0;
 
-    for (let i = 0; i < boardLength; i++) {
+    for (let i = 0; i < this.boardSize; i++) {
       countSymbolsRow = 0;
       countSymbolsCol = 0;
 
-      for (let j = 0; j < boardLength; j++) {
+      for (let j = 0; j < this.boardSize; j++) {
 
         // check rows.
         if (this.gameBoard[i][0] === this.gameBoard[i][j] && this.gameBoard[i][j]) {
           countSymbolsRow++;
-          if (countSymbolsRow === boardLength) {
+          if (countSymbolsRow === this.boardSize) {
             this.winner = this.gameBoard[i][j];
             break;
           }
@@ -113,7 +133,7 @@ export class GameEngineService {
         // check columns.
         if (this.gameBoard[0][i] === this.gameBoard[j][i] && this.gameBoard[j][i]) {
           countSymbolsCol++;
-          if (countSymbolsCol === boardLength) {
+          if (countSymbolsCol === this.boardSize) {
             this.winner = this.gameBoard[j][i];
             break;
           }
@@ -123,17 +143,17 @@ export class GameEngineService {
       // check main diagonal
       if (this.gameBoard[0][0] === this.gameBoard[i][i] && this.gameBoard[i][i]) {
         countSymbolsMainDiagonal++;
-        if (countSymbolsMainDiagonal === boardLength) {
+        if (countSymbolsMainDiagonal === this.boardSize) {
           this.winner = this.gameBoard[0][0];
         }
       }
 
       //check secondary diagonal
-      if (this.gameBoard[0][boardLength - 1] === this.gameBoard[i][boardLength - 1 - i]
-        && this.gameBoard[i][boardLength - 1 - i]) {
+      if (this.gameBoard[0][this.boardSize - 1] === this.gameBoard[i][this.boardSize - 1 - i]
+        && this.gameBoard[i][this.boardSize - 1 - i]) {
         countSymbolsSecondaryDiagonal++;
-        if (countSymbolsSecondaryDiagonal === boardLength) {
-          this.winner = this.gameBoard[0][boardLength - 1];
+        if (countSymbolsSecondaryDiagonal === this.boardSize) {
+          this.winner = this.gameBoard[0][this.boardSize - 1];
         }
       }
 
@@ -143,25 +163,6 @@ export class GameEngineService {
         break;
       }
     }
-  }
-
-  //#endregion
-
-  //#region Game functionality
-
-  public createNewGame(): void {
-    this.initCreateGame();
-  }
-
-  public play(row: number, col: number): void {
-
-    this.checkAllRule(row, col);
-
-    this.setBoard(row, col);
-
-    this.checkWin();
-
-    this.changeCurrentPlayer();
   }
 
   //#endregion
