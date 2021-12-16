@@ -25,4 +25,12 @@ export class TicTacToeComponent implements OnInit {
 
   //endregion
 
+  //#region UI events
+
+  public onNewGame(): void {
+    this.gameEngineService.createNewGame();
+  }
+
+  //#endregion
+
 }
