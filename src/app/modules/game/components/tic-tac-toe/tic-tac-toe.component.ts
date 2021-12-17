@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { GameEngineService } from 'src/app/core/services';
-import { GameSymbol } from 'src/app/shared/enums';
+import { TranslateService } from '@ngx-translate/core';
+import { GameEngineService, InformationDialogService } from 'src/app/core/services';
+import { GameSymbol, InformationDialogType } from 'src/app/shared/enums';
 import { Score } from 'src/app/shared/models/score.model';
 
 @Component({
@@ -13,19 +14,27 @@ export class TicTacToeComponent implements AfterViewInit {
   //#region Class properties
 
   board = [];
-  score: Score;
 
   get currentPlayer(): GameSymbol {
     return this.gameEngineService.currentPlayer;
+  }
+
+  get score(): Score {
+    return this.gameEngineService.score;
   }
 
   //public currentPlayer: string;
 
   //#endregion
 
-  constructor(private gameEngineService: GameEngineService) {
+  constructor(
+    private infomationDialogService: InformationDialogService,
+    private gameEngineService: GameEngineService,
+    private translateService: TranslateService
+  ) {
     this.initGameSetup();
   }
+
 
   //#region Life cycle hooks
 
@@ -39,7 +48,6 @@ export class TicTacToeComponent implements AfterViewInit {
 
   private initGameSetup(): void {
     this.initBoard();
-    this.initScore();
   }
 
   private initSetGirdStyleSize(): void {
@@ -54,10 +62,6 @@ export class TicTacToeComponent implements AfterViewInit {
     }
   }
 
-  private initScore(): void {
-    this.score = this.gameEngineService.score;
-  }
-
   //#endregion
 
   //#region UI events
@@ -65,6 +69,29 @@ export class TicTacToeComponent implements AfterViewInit {
   public onNewGame(): void {
     this.gameEngineService.createNewGame();
   }
+
+  public onResetGame = async (): Promise<void> => {
+
+    const result = await this.infomationDialogService.showDialog(
+      this.translateService.instant('dialogs.reset'), InformationDialogType.reset).afterClosed().toPromise()
+
+    if (result) {
+      this.gameEngineService.resetGame();
+    }
+
+    // .subscribe(
+    //   (result) => {
+    //     if (result) {
+    //       this.gameEngineService.resetGame();
+    //     }
+    //   }
+    // );
+  }
+
+
+
+
+
 
   //#endregion
 

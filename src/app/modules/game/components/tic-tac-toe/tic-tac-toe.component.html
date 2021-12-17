@@ -21,9 +21,12 @@
     </ng-container>
   </div>
 
-  <div class="mt-5">
-    <button (click)="onNewGame()" mat-raised-button color="primary">
+  <div class="btns mt-2">
+    <button class="btn" (click)="onNewGame()" mat-raised-button color="primary">
       {{ "buttons.new-game" | translate }}
+    </button>
+    <button class="btn"  (click)="onResetGame()" mat-raised-button color="warn">
+      {{ "buttons.reset" | translate }}
     </button>
   </div>
 </div>

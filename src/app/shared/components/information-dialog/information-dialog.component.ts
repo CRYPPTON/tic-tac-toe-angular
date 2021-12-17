@@ -17,13 +17,16 @@ export class InformationDialogComponent {
   //#endregion
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: informationDialogData) {
-    if (data.informationDialogType === 'Greska') {
-      this.icon = 'error_outline';
-      this.styleClass = 'failure-icon';
-    } else {
+
+    if (data.informationDialogType == 'success') {
       this.icon = 'check_circle_outline';
       this.styleClass = 'success-icon';
+    } else if (data.informationDialogType == 'reset') {
+      this.icon = 'announcement';
+      this.styleClass = 'failure-icon';
+    } else {
+      this.icon = 'error_outline';
+      this.styleClass = 'failure-icon';
     }
   }
-
 }

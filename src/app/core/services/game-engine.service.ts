@@ -62,6 +62,11 @@ export class GameEngineService {
 
   //#region Game utility
 
+  public resetGame(): void {
+    this.score = { x: 0, o: 0 };
+    this.createNewGame();
+  }
+
   private createBoard(): Array<GameSymbol[]> {
     let board = new Array();
     for (let i = 0; i < this.boardSize; i++) {

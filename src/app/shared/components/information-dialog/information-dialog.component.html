@@ -1,9 +1,33 @@
 <mat-card class="information-dialog mat-elevation-z0">
-  <mat-icon class="{{styleClass}}">{{ icon }}</mat-icon>
+  <mat-icon class="{{ styleClass }}">{{ icon }}</mat-icon>
   <mat-card-content>
     <p>{{ data.message }}</p>
   </mat-card-content>
   <mat-card-actions class="action-btns">
-    <button mat-raised-button color="primary" mat-dialog-close>{{ 'buttons.ok' | translate }}</button>
+    <div
+      *ngIf="
+        data.informationDialogType == 'reset';
+        then resetButtonsBlock;
+        else confirmButtonBlock
+      "
+    ></div>
+
+    <!-- Reset dialog buttons -->
+    <ng-template #resetButtonsBlock>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true">
+        Yes
+      </button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="false">
+        No
+      </button>
+    </ng-template>
+
+    <!-- Confirm dialog button -->
+    <ng-template #confirmButtonBlock>
+      <button mat-raised-button color="primary" mat-dialog-close>
+        {{ "buttons.ok" | translate }}
+      </button>
+    </ng-template>
+
   </mat-card-actions>
 </mat-card>

@@ -4,12 +4,18 @@
   },
   "buttons": {
     "new-game": "New Game",
-    "ok": "ok"
+    "ok": "ok",
+    "reset": "Reset",
+    "Yes": "Yes",
+    "No": "No"
   },
   "exceptions": {
     "invalidMove": "Invalid move",
-    "startNewGame": "Zapocnite novu igru",
+    "startNewGame": "Start new game",
     "win": "Win"
+  },
+  "dialogs": {
+    "reset": "Do you want to reset game?"
   },
 
   "onMove": "On move is"
