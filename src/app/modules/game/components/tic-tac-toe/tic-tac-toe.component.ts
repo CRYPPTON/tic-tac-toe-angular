@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { GameEngineService } from 'src/app/core/services';
 import { GameSymbol } from 'src/app/shared/enums';
+import { Score } from 'src/app/shared/models/score.model';
 
 @Component({
   selector: 'app-tic-tac-toe',
@@ -12,6 +13,7 @@ export class TicTacToeComponent implements AfterViewInit {
   //#region Class properties
 
   board = [];
+  score: Score;
 
   get currentPlayer(): GameSymbol {
     return this.gameEngineService.currentPlayer;
@@ -22,7 +24,7 @@ export class TicTacToeComponent implements AfterViewInit {
   //#endregion
 
   constructor(private gameEngineService: GameEngineService) {
-    this.initBoard();
+    this.initGameSetup();
   }
 
   //#region Life cycle hooks
@@ -35,6 +37,11 @@ export class TicTacToeComponent implements AfterViewInit {
 
   //#region init methods
 
+  private initGameSetup(): void {
+    this.initBoard();
+    this.initScore();
+  }
+
   private initSetGirdStyleSize(): void {
     const element = (document.querySelector('.border-game') as HTMLElement);
     element.style.gridTemplateColumns = `repeat(${this.board.length}, 1fr)`;
@@ -45,6 +52,10 @@ export class TicTacToeComponent implements AfterViewInit {
     for (let i = 0; i < this.gameEngineService.boardSize; i++) {
       this.board.push(Array(this.gameEngineService.boardSize));
     }
+  }
+
+  private initScore(): void {
+    this.score = this.gameEngineService.score;
   }
 
   //#endregion

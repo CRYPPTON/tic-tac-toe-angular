@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { GameSymbol, InformationDialogType } from '@app-enums';
 import { GameEngineHandlerError } from '@app-error-handlers';
+import { Score } from 'src/app/shared/models/score.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,12 @@ export class GameEngineService {
   gameBoard: Array<GameSymbol[]>;
   winner: GameSymbol;
   boardSize: number;
+  score: Score;
 
   //#endregion
 
   constructor(private translateService: TranslateService) {
+    this.score = { x: 0, o: 0 };
     this.createNewGame();
   }
 
@@ -62,7 +65,7 @@ export class GameEngineService {
   private createBoard(): Array<GameSymbol[]> {
     let board = new Array();
     for (let i = 0; i < this.boardSize; i++) {
-      board.push(new Array(this.boardSize))
+      board.push(new Array(this.boardSize));
     }
     return board;
   }
@@ -77,6 +80,14 @@ export class GameEngineService {
 
   private setBoard(row: number, col: number): void {
     this.gameBoard[row][col] = this.currentPlayer;
+  }
+
+  private updateScore(winner: GameSymbol): void {
+    if (winner === GameSymbol.X) {
+      this.score.x++;
+    } else if (winner === GameSymbol.O) {
+      this.score.o++;
+    }
   }
 
   //#endregion
@@ -159,6 +170,7 @@ export class GameEngineService {
 
       if (this.winner) {
         this.gameOver = true;
+        this.updateScore(this.winner);
         this.exceptionWin(this.winner);
         break;
       }
