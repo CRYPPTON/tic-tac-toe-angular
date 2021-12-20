@@ -1,14 +1,14 @@
 <div class="container pt-5">
   <!-- game header -->
   <div class="header mb-4">
-    <div class="score">
+    <div>
       <p>Player X: {{ score[gameSymbols.X] }}</p>
-      <p *ngIf="currentPlayer === gameSymbols.X" class="active"></p>
+      <p [ngClass]="currentPlayer === gameSymbols.X ? 'active' : ''"></p>
     </div>
     <h1 class="title">{{ "titles.game" | translate }}</h1>
-    <div class="score">
+    <div>
       <p>Player O: {{ score[gameSymbols.O] }}</p>
-      <p *ngIf="currentPlayer === gameSymbols.O" class="active"></p>
+      <p [ngClass]="currentPlayer === gameSymbols.O ? 'active' : ''"></p>
     </div>
   </div>
 
