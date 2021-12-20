@@ -2,12 +2,12 @@
   <!-- game header -->
   <div class="header mb-4">
     <div class="score">
-      <p>Player X: {{ score.x }}</p>
+      <p>Player X: {{ score['X'] }}</p>
       <p *ngIf="currentPlayer === 'X'" class="active"></p>
     </div>
     <h1 class="title">{{ "titles.game" | translate }}</h1>
     <div class="score">
-      <p>Player O: {{ score.o }}</p>
+      <p>Player O: {{ score['O'] }}</p>
       <p *ngIf="currentPlayer === 'O'" class="active"></p>
     </div>
   </div>

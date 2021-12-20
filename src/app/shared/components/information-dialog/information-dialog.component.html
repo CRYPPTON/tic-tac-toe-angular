@@ -6,7 +6,7 @@
   <mat-card-actions class="action-btns">
     <div
       *ngIf="
-        data.informationDialogType == 'reset';
+        data.informationDialogType === 'reset';
         then resetButtonsBlock;
         else confirmButtonBlock
       "

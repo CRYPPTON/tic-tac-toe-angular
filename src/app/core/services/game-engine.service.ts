@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { GameSymbol, InformationDialogType } from '@app-enums';
 import { GameEngineHandlerError } from '@app-error-handlers';
-import { Score } from 'src/app/shared/models/score.model';
+import { Score } from '@app-models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class GameEngineService {
   //#endregion
 
   constructor(private translateService: TranslateService) {
-    this.score = { x: 0, o: 0 };
+    this.score = { 'X': 0, 'O': 0 };
     this.createNewGame();
   }
 
@@ -63,7 +63,7 @@ export class GameEngineService {
   //#region Game utility
 
   public resetGame(): void {
-    this.score = { x: 0, o: 0 };
+    this.score = { 'X': 0, 'O': 0 };
     this.createNewGame();
   }
 
@@ -88,11 +88,7 @@ export class GameEngineService {
   }
 
   private updateScore(winner: GameSymbol): void {
-    if (winner === GameSymbol.X) {
-      this.score.x++;
-    } else if (winner === GameSymbol.O) {
-      this.score.o++;
-    }
+    this.score[winner]++;
   }
 
   //#endregion

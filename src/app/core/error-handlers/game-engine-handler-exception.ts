@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable } from "@angular/core";
-import { InformationDialogType } from "src/app/shared/enums";
-import { InformationDialogService } from "../services";
+import { InformationDialogType } from "@app-enums";
+import { InformationDialogService } from "@app-services";
 import { GameEngineHandlerError } from "@app-error-handlers";
 
 @Injectable()

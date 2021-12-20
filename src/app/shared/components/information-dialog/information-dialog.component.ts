@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { informationDialogData } from '@app-models';
+import { InformationDialogData } from '@app-models';
 
 @Component({
   selector: 'app-information-dialog',
@@ -16,7 +16,7 @@ export class InformationDialogComponent {
 
   //#endregion
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: informationDialogData) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: InformationDialogData) {
 
     if (data.informationDialogType == 'success') {
       this.icon = 'check_circle_outline';

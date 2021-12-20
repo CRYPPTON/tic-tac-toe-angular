@@ -1,4 +1,4 @@
 export interface Score {
-  x: number,
-  o: number
+  'X': number,
+  'O': number
 }

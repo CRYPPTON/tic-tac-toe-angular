@@ -19,6 +19,10 @@ export class TicTacToeComponent implements AfterViewInit {
     return this.gameEngineService.currentPlayer;
   }
 
+  get winner(): GameSymbol {
+    return this.winner;
+  }
+
   get score(): Score {
     return this.gameEngineService.score;
   }
@@ -34,7 +38,6 @@ export class TicTacToeComponent implements AfterViewInit {
   ) {
     this.initGameSetup();
   }
-
 
   //#region Life cycle hooks
 
@@ -73,7 +76,7 @@ export class TicTacToeComponent implements AfterViewInit {
   public onResetGame = async (): Promise<void> => {
 
     const result = await this.infomationDialogService.showDialog(
-      this.translateService.instant('dialogs.reset'), InformationDialogType.reset).afterClosed().toPromise()
+      this.translateService.instant('dialogs.reset'), InformationDialogType.reset);
 
     if (result) {
       this.gameEngineService.resetGame();
@@ -87,11 +90,6 @@ export class TicTacToeComponent implements AfterViewInit {
     //   }
     // );
   }
-
-
-
-
-
 
   //#endregion
 

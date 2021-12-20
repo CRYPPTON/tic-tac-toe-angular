@@ -10,13 +10,13 @@ export class InformationDialogService {
 
   constructor(public dialog: MatDialog) { }
 
-  public showDialog(message: string, informationDialogType: InformationDialogType): MatDialogRef<InformationDialogComponent> {
-    const dialogRef = this.dialog.open(InformationDialogComponent, {
+  public showDialog(message: string, informationDialogType: InformationDialogType): Promise<boolean> {
+    const dialogPromise = this.dialog.open(InformationDialogComponent, {
       data: {
         message: message,
         informationDialogType: informationDialogType
       }
-    });
-    return dialogRef;
+    }).afterClosed().toPromise();
+    return dialogPromise;
   }
 }
