@@ -3,12 +3,12 @@
   <div class="header mb-4">
     <div>
       <p>Player X: {{ score[gameSymbols.X] }}</p>
-      <p [ngClass]="currentPlayer === gameSymbols.X ? 'active' : ''"></p>
+      <div [ngClass]="currentPlayer === gameSymbols.X ? 'active' : ''"></div>
     </div>
     <h1 class="title">{{ "titles.game" | translate }}</h1>
     <div>
       <p>Player O: {{ score[gameSymbols.O] }}</p>
-      <p [ngClass]="currentPlayer === gameSymbols.O ? 'active' : ''"></p>
+      <div [ngClass]="currentPlayer === gameSymbols.O ? 'active' : ''"></div>
     </div>
   </div>
 
