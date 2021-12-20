@@ -1,6 +1,5 @@
 import { GameSymbol } from "@app-enums";
 
-export interface Score {
-  [GameSymbol.X]: number;
-  [GameSymbol.O]: number;
-}
+export type Score = {
+  [k in GameSymbol]: number;
+};

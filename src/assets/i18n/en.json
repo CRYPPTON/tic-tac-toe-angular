@@ -17,6 +17,8 @@
   "dialogs": {
     "reset": "Do you want to reset game?"
   },
-
+  "content": {
+    "player": "Player"
+  },
   "onMove": "On move is"
 }

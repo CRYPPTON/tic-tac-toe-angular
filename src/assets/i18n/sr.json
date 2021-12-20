@@ -17,5 +17,8 @@
   "dialogs": {
     "reset": "Da li zelite da restartujete igru?"
   },
+  "content": {
+    "player": "Igrac"
+  },
   "onMove": "Na potezu je"
 }
