@@ -2,13 +2,13 @@
   <!-- game header -->
   <div class="header mb-4">
     <div class="score">
-      <p>Player X: {{ score['X'] }}</p>
-      <p *ngIf="currentPlayer === 'X'" class="active"></p>
+      <p>Player X: {{ score[gameSymbols.X] }}</p>
+      <p *ngIf="currentPlayer === gameSymbols.X" class="active"></p>
     </div>
     <h1 class="title">{{ "titles.game" | translate }}</h1>
     <div class="score">
-      <p>Player O: {{ score['O'] }}</p>
-      <p *ngIf="currentPlayer === 'O'" class="active"></p>
+      <p>Player O: {{ score[gameSymbols.O] }}</p>
+      <p *ngIf="currentPlayer === gameSymbols.O" class="active"></p>
     </div>
   </div>
 
@@ -25,7 +25,7 @@
     <button class="btn" (click)="onNewGame()" mat-raised-button color="primary">
       {{ "buttons.new-game" | translate }}
     </button>
-    <button class="btn"  (click)="onResetGame()" mat-raised-button color="warn">
+    <button class="btn" (click)="onResetGame()" mat-raised-button color="warn">
       {{ "buttons.reset" | translate }}
     </button>
   </div>

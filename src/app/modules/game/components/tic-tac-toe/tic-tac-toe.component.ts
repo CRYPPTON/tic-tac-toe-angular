@@ -23,6 +23,10 @@ export class TicTacToeComponent implements AfterViewInit {
     return this.gameEngineService.score;
   }
 
+  public get gameSymbols(): typeof GameSymbol {
+    return GameSymbol;
+  }
+
   //public currentPlayer: string;
 
   //#endregion
