@@ -1,15 +1,24 @@
 {
-  "title": {
+  "titles": {
     "game": "XOX Igra"
   },
   "buttons": {
     "new-game": "Nova Igra",
-    "ok": "U redu"
+    "ok": "U redu",
+    "reset": "Restartuj",
+    "Yes": "Da",
+    "No": "Ne"
   },
   "exceptions": {
     "invalidMove": "Nedozvoljen potez!",
     "startNewGame": "Zapocnite novu igru!",
     "win": "Pobeda"
+  },
+  "dialogs": {
+    "reset": "Da li zelite da restartujete igru?"
+  },
+  "content": {
+    "player": "Igrac"
   },
   "onMove": "Na potezu je"
 }

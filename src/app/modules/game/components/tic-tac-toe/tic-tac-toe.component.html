@@ -1,5 +1,15 @@
-<div class="container">
-  <p>{{ "onMove" | translate }}: {{ currentPlayer }}</p>
+<div class="container pt-5">
+  <!-- game header -->
+  <div class="header mb-4">
+    <div [ngClass]="currentPlayer === gameSymbols.X ? 'active' : ''">
+      {{ "content.player" | translate }} {{ gameSymbols.X }}: {{ score[gameSymbols.X] }}
+    </div>
+    <h1 class="title">{{ "titles.game" | translate }}</h1>
+    <div [ngClass]="currentPlayer === gameSymbols.O ? 'active' : ''">
+      {{ "content.player" | translate }} {{ gameSymbols.O }}: {{ score[gameSymbols.O] }}
+    </div>
+  </div>
+
   <div class="border-game">
     <ng-container *ngFor="let row of board; let i = index">
       <ng-container *ngFor="let field of row; let j = index">
@@ -9,9 +19,12 @@
     </ng-container>
   </div>
 
-  <div class="mt-5">
-    <button (click)="onNewGame()" mat-raised-button color="primary">
+  <div class="btns mt-2">
+    <button class="btn" (click)="onNewGame()" mat-raised-button color="primary">
       {{ "buttons.new-game" | translate }}
+    </button>
+    <button class="btn" (click)="onResetGame()" mat-raised-button color="warn">
+      {{ "buttons.reset" | translate }}
     </button>
   </div>
 </div>

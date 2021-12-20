@@ -1,4 +1,5 @@
 export enum InformationDialogType {
-    success = 'Uspesno',
-    failure = 'Greska'
+    success = 'success',
+    failure = 'failure',
+    reset = 'reset'
 }

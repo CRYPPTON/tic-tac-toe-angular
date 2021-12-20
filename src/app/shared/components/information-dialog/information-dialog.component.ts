@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { informationDialogData } from '@app-models';
+import { InformationDialogData } from '@app-models';
 
 @Component({
   selector: 'app-information-dialog',
@@ -16,14 +16,17 @@ export class InformationDialogComponent {
 
   //#endregion
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: informationDialogData) {
-    if (data.informationDialogType === 'Greska') {
-      this.icon = 'error_outline';
-      this.styleClass = 'failure-icon';
-    } else {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: InformationDialogData) {
+
+    if (data.informationDialogType == 'success') {
       this.icon = 'check_circle_outline';
       this.styleClass = 'success-icon';
+    } else if (data.informationDialogType == 'reset') {
+      this.icon = 'announcement';
+      this.styleClass = 'failure-icon';
+    } else {
+      this.icon = 'error_outline';
+      this.styleClass = 'failure-icon';
     }
   }
-
 }
