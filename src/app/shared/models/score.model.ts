@@ -1,4 +1,6 @@
+import { GameSymbol } from "@app-enums";
+
 export interface Score {
-  'X': number,
-  'O': number
+  [GameSymbol.X]: number;
+  [GameSymbol.O]: number;
 }

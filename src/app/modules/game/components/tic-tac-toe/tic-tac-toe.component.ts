@@ -19,10 +19,6 @@ export class TicTacToeComponent implements AfterViewInit {
     return this.gameEngineService.currentPlayer;
   }
 
-  get winner(): GameSymbol {
-    return this.winner;
-  }
-
   get score(): Score {
     return this.gameEngineService.score;
   }

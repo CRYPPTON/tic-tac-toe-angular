@@ -21,7 +21,7 @@ export class GameEngineService {
   //#endregion
 
   constructor(private translateService: TranslateService) {
-    this.score = { 'X': 0, 'O': 0 };
+    this.score = { [GameSymbol.X]: 0, [GameSymbol.O]: 0 };
     this.createNewGame();
   }
 
@@ -63,7 +63,7 @@ export class GameEngineService {
   //#region Game utility
 
   public resetGame(): void {
-    this.score = { 'X': 0, 'O': 0 };
+    this.score = { [GameSymbol.X]: 0, [GameSymbol.O]: 0 };
     this.createNewGame();
   }
 
