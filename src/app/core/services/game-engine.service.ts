@@ -17,6 +17,8 @@ export class GameEngineService {
   winner: GameSymbol;
   boardSize: number;
   score: Score;
+  boardHistory: Array<number[]>;
+  isUndo: boolean;
 
   //#endregion
 
@@ -32,6 +34,12 @@ export class GameEngineService {
   }
 
   public play(row: number, col: number): void {
+
+    if (this.isUndo) {
+      this.isUndo = false;
+    }
+
+    this.addFieldInHistory(row, col);
 
     this.checkForErrors(row, col);
 
@@ -56,6 +64,10 @@ export class GameEngineService {
     this.gameBoard = this.createBoard();
 
     this.winner = null;
+
+    this.isUndo = true;
+
+    this.boardHistory = [];
   }
 
   //#endregion
@@ -65,6 +77,26 @@ export class GameEngineService {
   public resetGame(): void {
     this.score = { [GameSymbol.X]: 0, [GameSymbol.O]: 0 };
     this.createNewGame();
+  }
+
+  public undo(): void {
+    if (!this.gameOver) {
+      let lastMove = this.boardHistory[this.boardHistory.length - 1];
+
+      this.gameBoard[lastMove[0]][lastMove[1]] = null;
+
+      this.changeCurrentPlayer();
+
+      this.isUndo = true;
+    } else {
+      this.isUndo = false;
+      this.boardHistory = [];
+      this.exceptionGameOver();
+    }
+  }
+
+  private addFieldInHistory(row: number, col: number): void {
+    this.boardHistory.push([row, col]);
   }
 
   private createBoard(): Array<GameSymbol[]> {
@@ -96,7 +128,7 @@ export class GameEngineService {
   //#region Game check exceptions
 
   private checkForErrors(row: number, col: number): void {
-    this.exceptionGameOver(this.gameOver);
+    this.exceptionGameOver();
     this.exceptionInvalidMove(row, col);
   }
 
@@ -108,8 +140,8 @@ export class GameEngineService {
     }
   }
 
-  private exceptionGameOver(gameOver: boolean): void {
-    if (gameOver) {
+  private exceptionGameOver(): void {
+    if (this.gameOver) {
       throw new GameEngineHandlerError(
         this.translateService.instant('exceptions.startNewGame'),
         InformationDialogType.failure);
@@ -170,6 +202,7 @@ export class GameEngineService {
       }
 
       if (this.winner) {
+        this.isUndo = true;
         this.gameOver = true;
         this.updateScore(this.winner);
         this.exceptionWin(this.winner);

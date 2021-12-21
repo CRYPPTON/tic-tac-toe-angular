@@ -7,7 +7,8 @@
     "ok": "ok",
     "reset": "Reset",
     "Yes": "Yes",
-    "No": "No"
+    "No": "No",
+    "undo": "Undo"
   },
   "exceptions": {
     "invalidMove": "Invalid move",
