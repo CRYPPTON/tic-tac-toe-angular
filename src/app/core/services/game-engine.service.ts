@@ -18,6 +18,7 @@ export class GameEngineService {
   boardSize: number;
   score: Score;
   boardHistory: Array<number[]>;
+  isUndo: boolean;
 
   //#endregion
 
@@ -29,13 +30,16 @@ export class GameEngineService {
   //#region Game functionality
 
   public createNewGame(): void {
-    this.boardHistory = [];
     this.initCreateGame();
   }
 
   public play(row: number, col: number): void {
 
-    this.boardHistory.push([row, col]);
+    if (this.isUndo) {
+      this.isUndo = false;
+    }
+
+    this.addFieldInHistory(row, col);
 
     this.checkForErrors(row, col);
 
@@ -60,6 +64,10 @@ export class GameEngineService {
     this.gameBoard = this.createBoard();
 
     this.winner = null;
+
+    this.isUndo = true;
+
+    this.boardHistory = [];
   }
 
   //#endregion
@@ -71,22 +79,24 @@ export class GameEngineService {
     this.createNewGame();
   }
 
-  public undo() {
+  public undo(): void {
     if (!this.gameOver) {
-      this.exceptionInvalidUndo(this.boardHistory.length);
+      let lastMove = this.boardHistory[this.boardHistory.length - 1];
 
-      this.initCreateGame();
+      this.gameBoard[lastMove[0]][lastMove[1]] = null;
 
-      for (let i = 0; i < this.boardHistory.length - 1; i++) {
-        this.setBoard(this.boardHistory[i][0], this.boardHistory[i][1]);
-        this.changeCurrentPlayer();
-      }
+      this.changeCurrentPlayer();
 
-      this.boardHistory.length = this.boardHistory.length - 1;
+      this.isUndo = true;
     } else {
+      this.isUndo = false;
       this.boardHistory = [];
-      this.exceptionGameOver(this.gameOver);
+      this.exceptionGameOver();
     }
+  }
+
+  private addFieldInHistory(row: number, col: number): void {
+    this.boardHistory.push([row, col]);
   }
 
   private createBoard(): Array<GameSymbol[]> {
@@ -118,16 +128,8 @@ export class GameEngineService {
   //#region Game check exceptions
 
   private checkForErrors(row: number, col: number): void {
-    this.exceptionGameOver(this.gameOver);
+    this.exceptionGameOver();
     this.exceptionInvalidMove(row, col);
-  }
-
-  private exceptionInvalidUndo(length: number) {
-    if (length === 0) {
-      throw new GameEngineHandlerError(
-        this.translateService.instant('exceptions.invalidUndo'),
-        InformationDialogType.failure);
-    }
   }
 
   private exceptionInvalidMove(row: number, col: number): void {
@@ -138,8 +140,8 @@ export class GameEngineService {
     }
   }
 
-  private exceptionGameOver(gameOver: boolean): void {
-    if (gameOver) {
+  private exceptionGameOver(): void {
+    if (this.gameOver) {
       throw new GameEngineHandlerError(
         this.translateService.instant('exceptions.startNewGame'),
         InformationDialogType.failure);
@@ -200,6 +202,7 @@ export class GameEngineService {
       }
 
       if (this.winner) {
+        this.isUndo = true;
         this.gameOver = true;
         this.updateScore(this.winner);
         this.exceptionWin(this.winner);

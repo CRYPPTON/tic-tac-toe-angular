@@ -13,8 +13,7 @@
   "exceptions": {
     "invalidMove": "Invalid move",
     "startNewGame": "Start new game",
-    "win": "Win",
-    "invalidUndo": "You have to play the move first!"
+    "win": "Win"
   },
   "dialogs": {
     "reset": "Do you want to reset game?"

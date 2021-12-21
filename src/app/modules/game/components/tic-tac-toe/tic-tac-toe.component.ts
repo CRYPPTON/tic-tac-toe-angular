@@ -15,16 +15,20 @@ export class TicTacToeComponent implements AfterViewInit {
 
   board = [];
 
-  get currentPlayer(): GameSymbol {
+  public get currentPlayer(): GameSymbol {
     return this.gameEngineService.currentPlayer;
   }
 
-  get score(): Score {
+  public get score(): Score {
     return this.gameEngineService.score;
   }
 
   public get gameSymbols(): typeof GameSymbol {
     return GameSymbol;
+  }
+
+  public get isUndo(): boolean {
+    return this.gameEngineService.isUndo;
   }
 
   //public currentPlayer: string;

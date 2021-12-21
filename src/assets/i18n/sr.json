@@ -13,8 +13,7 @@
   "exceptions": {
     "invalidMove": "Nedozvoljen potez!",
     "startNewGame": "Zapocnite novu igru!",
-    "win": "Pobeda",
-    "invalidUndo": "Morate prvo da odigrate potez!"
+    "win": "Pobeda"
   },
   "dialogs": {
     "reset": "Da li zelite da restartujete igru?"
