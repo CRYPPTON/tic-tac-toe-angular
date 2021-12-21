@@ -16,7 +16,7 @@ export class AppComponent {
     private informationDialogService: InformationDialogService,
     private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('sr');
+    this.translate.setDefaultLang('en');
   }
 
   onOpenDialog(): void {

@@ -91,6 +91,10 @@ export class TicTacToeComponent implements AfterViewInit {
     // );
   }
 
+  public onUndo(): void {
+    this.gameEngineService.undo();
+  }
+
   //#endregion
 
 }

@@ -17,6 +17,7 @@ export class GameEngineService {
   winner: GameSymbol;
   boardSize: number;
   score: Score;
+  boardHistory: Array<number[]>;
 
   //#endregion
 
@@ -28,10 +29,13 @@ export class GameEngineService {
   //#region Game functionality
 
   public createNewGame(): void {
+    this.boardHistory = [];
     this.initCreateGame();
   }
 
   public play(row: number, col: number): void {
+
+    this.boardHistory.push([row, col]);
 
     this.checkForErrors(row, col);
 
@@ -67,6 +71,24 @@ export class GameEngineService {
     this.createNewGame();
   }
 
+  public undo() {
+    if (!this.gameOver) {
+      this.exceptionInvalidUndo(this.boardHistory.length);
+
+      this.initCreateGame();
+
+      for (let i = 0; i < this.boardHistory.length - 1; i++) {
+        this.setBoard(this.boardHistory[i][0], this.boardHistory[i][1]);
+        this.changeCurrentPlayer();
+      }
+
+      this.boardHistory.length = this.boardHistory.length - 1;
+    } else {
+      this.boardHistory = [];
+      this.exceptionGameOver(this.gameOver);
+    }
+  }
+
   private createBoard(): Array<GameSymbol[]> {
     let board = new Array();
     for (let i = 0; i < this.boardSize; i++) {
@@ -98,6 +120,14 @@ export class GameEngineService {
   private checkForErrors(row: number, col: number): void {
     this.exceptionGameOver(this.gameOver);
     this.exceptionInvalidMove(row, col);
+  }
+
+  private exceptionInvalidUndo(length: number) {
+    if (length === 0) {
+      throw new GameEngineHandlerError(
+        this.translateService.instant('exceptions.invalidUndo'),
+        InformationDialogType.failure);
+    }
   }
 
   private exceptionInvalidMove(row: number, col: number): void {

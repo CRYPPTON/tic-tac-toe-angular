@@ -7,12 +7,14 @@
     "ok": "U redu",
     "reset": "Restartuj",
     "Yes": "Da",
-    "No": "Ne"
+    "No": "Ne",
+    "undo": "Vrati"
   },
   "exceptions": {
     "invalidMove": "Nedozvoljen potez!",
     "startNewGame": "Zapocnite novu igru!",
-    "win": "Pobeda"
+    "win": "Pobeda",
+    "invalidUndo": "Morate prvo da odigrate potez!"
   },
   "dialogs": {
     "reset": "Da li zelite da restartujete igru?"

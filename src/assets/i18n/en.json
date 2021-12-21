@@ -7,12 +7,14 @@
     "ok": "ok",
     "reset": "Reset",
     "Yes": "Yes",
-    "No": "No"
+    "No": "No",
+    "undo": "Undo"
   },
   "exceptions": {
     "invalidMove": "Invalid move",
     "startNewGame": "Start new game",
-    "win": "Win"
+    "win": "Win",
+    "invalidUndo": "You have to play the move first!"
   },
   "dialogs": {
     "reset": "Do you want to reset game?"
